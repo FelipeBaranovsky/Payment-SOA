@@ -13,7 +13,7 @@ const paymentSchema = mongoose.Schema({
     },
     //Order ID
     order: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         required: true,
         unique: true
     },
