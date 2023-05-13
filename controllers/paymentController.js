@@ -1,7 +1,10 @@
 /*
     Payment Controller / Endpoints
 */
+import axios from "axios"
+import dotenv from "dotenv"
 import Payment from "../models/Payment.js"
+
 
 //Payments list
 const getPayments = async(req,res) => {
@@ -53,11 +56,21 @@ const changeStatus = async(payment) => {
     try {
         const updatedPayment = await payment.save()
         console.log("Payment Updated! \n", updatePayment);
-        //TODO: Endpoint of the other group to alert the change of state
+        //TODO: Endpoint to alert the change of state
     } catch (error) {
         res.json({error: error.message})
     }
-
+    /*
+    try {
+        //Enable environment-V
+        dotenv.config()
+        await axios.put(`${process.env.ORDERS_URI }/${payment.order}`, { newState })
+        console.log("Sent status:", newState)
+    } catch (error) {
+        console.error("Failed to send status:", error.message)
+        res.json({error: error.message})
+    }
+    */
 }
 
 //Get a payment
